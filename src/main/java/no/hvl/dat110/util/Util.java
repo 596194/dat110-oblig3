@@ -37,15 +37,46 @@ public class Util {
 	 * @return true if (lower <= id <= upper) or false otherwise
 	 */
 	public static boolean checkInterval(BigInteger id, BigInteger lower, BigInteger upper) {
+		boolean checkInterval= false;
 		// Hint:
 		// using mod = 10, then the interval (6, 2) = (6, 7, 8, 9, 0, 1, 2)
 		// The interval (6, 2) using the notation above means; pred = 6 and node = 2
+		
+		
+		int l = id.compareTo(lower);
+		int u = id.compareTo(upper);
+		
+		//sjekker om den lower større enn upper
+		int lower_upper= lower.compareTo(upper);
+		//System.out.println(l);
+		//System.out.println(u);
+		//System.out.println(lower_upper);
 		// if id = 4, then (6 < 4 <= 2) = false  
+		
+		//hvis lower er mindre upper, sjekk intervallet mellom lower og upper
+		if(lower_upper <0) {
+		if(l > 0 && u < 0) {
+			checkInterval= true;
+		}
+		else if (u==0 || l==0){
+			checkInterval= true;
+		} 
+		
+		//hvis lower er større upper, sjekke id er størren enn lower eller mindre enn upper
+		} else {
+			if(l > 0 || u < 0)
+				checkInterval= true;
+			if (u==0 || l==0){
+				checkInterval= true;
+			} 
+		} 
+		
+		
 		// if id = 9, then (6 < 9 <= 2) = true
 		
 		// Task: given an identifier, id: check whether pred < id <= node
 		
-		return false;
+		return checkInterval;
 
 	}
 	
